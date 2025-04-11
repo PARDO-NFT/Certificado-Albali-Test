@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verificador de Certificados Albali (Test)</title>
+</head>
+<body>
+    <h1>Verificador de Certificados Albali (Test)</h1>
+    <p>Verificando Certificado...</p>
+    <p id="tokenId"></p>
+    <p><a id="polygonscanLink" href="#" target="_blank">Ver en Explorador Amoy</a></p> 
+    <!-- Cambié el texto del enlace -->
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokenId = urlParams.get('tokenId');
+        // !!!! REEMPLAZA ESTA LÍNEA CON TU DIRECCIÓN REAL !!!!
+        const contractAddress = '0xD934594A4D27e6982b04A1Bca755d505eb8010F9'; // <--- ¡PON AQUÍ TU DIRECCIÓN! 
+        const explorerBaseUrl = 'https://www.oklink.com/amoy'; // URL base del explorador de Amoy
+
+        if (tokenId !== null) {
+            document.getElementById('tokenId').innerText = `Token ID: ${tokenId}`;
+            const explorerTokenUrl = `${explorerBaseUrl}/token/${contractAddress}?a=${tokenId}`; // URL específica del token
+            document.getElementById('polygonscanLink').href = explorerTokenUrl; 
+            document.getElementById('polygonscanLink').innerText = `Ver Token ${tokenId} en Explorador Amoy`; // Texto actualizado
+
+        } else {
+            document.getElementById('tokenId').innerText = "Error: No se especificó Token ID en la URL (ej: ?tokenId=0)";
+        }
+    </script>
+</body>
+</html>
